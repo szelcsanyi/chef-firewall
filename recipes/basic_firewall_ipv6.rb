@@ -95,7 +95,7 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
   end
 end
 
-case node[:kernel][:release].split('.')[0]
+case node['kernel']['release'].split('.')[0]
 when '3'
   firewall_rule 'dont track local traffic' do
     rule '-i lo'
