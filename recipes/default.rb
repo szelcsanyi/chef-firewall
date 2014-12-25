@@ -1,9 +1,6 @@
 # The firewall template
-class Chef
-  # Recipe
-  class Recipe
-    include FirewallTemplate
-  end
+class Chef::Recipe
+  include FirewallTemplate
 end
 
 package 'iptables' do
