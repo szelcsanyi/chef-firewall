@@ -1,0 +1,19 @@
+LineLength:
+  Max: 105
+  Exclude:
+    - "**/attributes/*.rb"
+    - "**/metadata.rb"
+
+SingleSpaceBeforeFirstArg:
+  Enabled: false  # too strict about metadata and certain formatting
+
+Encoding:
+  Description: 'Use UTF-8 as the source file encoding.'
+  Enabled: false
+MethodLength:
+  CountComments: true  # count full line comments?
+  Max: 11
+
+MethodLength:
+  CountComments: false
+  Max: 16
