@@ -18,12 +18,15 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
     protoversion 'ipv6'
   end
 
-  firewall_rule 'Allow icmp echo request' do
-    rule '--icmp-type echo-request'
-    proto 'icmpv6'
-    jump 'ACCEPT'
-    chain 'ALLOWED'
-    protoversion 'ipv6'
+  %w(destination-unreachable packet-too-big time-exceeded parameter-problem echo-request echo-reply \
+     router-advertisement neighbor-solicitation neighbor-advertisement redirect).each do |icmptype|
+    firewall_rule 'Allow icmp echo request' do
+      rule "--icmpv6-type #{icmptype}"
+      proto 'icmpv6'
+      jump 'ACCEPT'
+      chain 'ALLOWED'
+      protoversion 'ipv6'
+    end
   end
 
   firewall_rule 'Check for whitelist on external interface' do
