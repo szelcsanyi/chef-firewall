@@ -18,7 +18,7 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
     protoversion 'ipv6'
   end
 
-  %w(destination-unreachable packet-too-big time-exceeded parameter-problem echo-request echo-reply \
+  %w(destination-unreachable packet-too-big time-exceeded parameter-problem echo-request echo-reply
      router-advertisement neighbor-solicitation neighbor-advertisement redirect).each do |icmptype|
     firewall_rule 'Allow icmp echo request' do
       rule "--icmpv6-type #{icmptype}"
