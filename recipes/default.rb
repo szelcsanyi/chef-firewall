@@ -4,7 +4,7 @@ class Chef::Recipe
 end
 
 package 'iptables' do
-  action [:install, :upgrade]
+  action :install
   options '--force-yes'
 end
 
