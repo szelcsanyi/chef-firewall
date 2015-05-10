@@ -6,7 +6,7 @@ end
 package 'iptables' do
   action :install
   options '--force-yes'
-  not_if do File.exists?("/sbin/iptables") end
+  not_if { File.exist?('/sbin/iptables') }
 end
 
 r = gem_package 'ipaddr_extensions' do
