@@ -1,8 +1,7 @@
-define :L7_firewall_policy,
-        policy: 'ACCEPT',
-        table: 'filter',
-        chain: 'INPUT',
-        protoversion: 'ipv4' do
+define :L7_firewall_policy, policy: 'ACCEPT',
+                            table: 'filter',
+                            chain: 'INPUT',
+                            protoversion: 'ipv4' do
   unless Chef::Config['solo']
     t = create_firewall_template
 

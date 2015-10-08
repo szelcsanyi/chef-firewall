@@ -1,12 +1,11 @@
-define :L7_firewall_rule,
-        rule: '',
-        position: 'APPEND',
-        table: 'filter',
-        chain: 'INPUT',
-        proto: 'all',
-        protoversion: 'ipv4',
-        jump: 'ACCEPT',
-        enabled: true do
+define :L7_firewall_rule, rule: '',
+                          position: 'APPEND',
+                          table: 'filter',
+                          chain: 'INPUT',
+                          proto: 'all',
+                          protoversion: 'ipv4',
+                          jump: 'ACCEPT',
+                          enabled: true do
   unless Chef::Config['solo']
     t = create_firewall_template
 

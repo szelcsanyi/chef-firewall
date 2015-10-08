@@ -18,9 +18,10 @@ MethodLength:
 ClassAndModuleChildren:
   Enabled: false
 
+Style/AlignHash:
+  Enabled: false
+
 AllCops:
   Exclude:
     - libraries/ip_finder.rb
 
-Style/AlignHash:
-  Enabled: false

@@ -1,7 +1,6 @@
-define :L7_firewall_notrack,
-        proto: 'tcp',
-        port: '',
-        protoversion: 'ipv4' do
+define :L7_firewall_notrack, proto: 'tcp',
+                             port: '',
+                             protoversion: 'ipv4' do
   unless Chef::Config['solo']
     proto        = params[:proto]
     protoversion = params[:protoversion]
