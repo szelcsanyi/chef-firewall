@@ -7,3 +7,5 @@ rvm:
 script:
   - bundle exec foodcritic -f any . --tags ~FC015
   - bundle exec rubocop
+
+sudo: false
