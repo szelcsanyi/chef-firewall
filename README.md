@@ -1,6 +1,7 @@
 # firewall cookbook
 [![Build Status](https://travis-ci.org/szelcsanyi/chef-firewall.svg?branch=master)](https://travis-ci.org/szelcsanyi/chef-firewall)
 [![security](https://hakiri.io/github/szelcsanyi/chef-firewall/master.svg)](https://hakiri.io/github/szelcsanyi/chef-firewall/master)
+[![Cookbook Version](https://img.shields.io/cookbook/v/L7-firewall.svg?style=flat)](https://supermarket.chef.io/cookbooks/L7-firewall)
 
 ## Description
 
