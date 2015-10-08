@@ -4,7 +4,6 @@
 #
 # Copyright 2015, Gabor Szelcsanyi <szelcsanyi.gabor@gmail.com>
 
-
 %w( ipv4 ipv6 ).each do |protoversion|
   # Set limit
   L7_firewall_rule 'SSH limit' do
