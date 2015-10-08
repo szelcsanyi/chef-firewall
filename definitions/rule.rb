@@ -1,4 +1,4 @@
-define :firewall_rule, rule: '',
+define :L7_firewall_rule, rule: '',
                        position: 'APPEND',
                        table: 'filter',
                        chain: 'INPUT',

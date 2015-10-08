@@ -1,3 +1,9 @@
+#
+# Cookbook Name:: L7-firewall
+# Recipe:: default
+#
+# Copyright 2015, Gabor Szelcsanyi <szelcsanyi.gabor@gmail.com>
+
 # The firewall template
 class Chef::Recipe
   include FirewallTemplate
@@ -21,7 +27,7 @@ Gem.clear_paths
 
 template '/etc/init.d/firewall' do
   source 'etc/init.d/firewall.erb'
-  cookbook 'firewall'
+  cookbook 'L7-firewall'
   owner 'root'
   group 'root'
   mode '0755'

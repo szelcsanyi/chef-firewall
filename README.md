@@ -18,10 +18,11 @@ Configures [iptables](http://en.wikipedia.org/wiki/Iptables) packet filter via O
 
 ## Recipes
 
-* `firewall` - The default recipe.
-* `firewall::allow_ssh` - allows ssh on port 22
-* `firewall::basic_firewall` - sets up a basic firewall rule and chain set with default drop policy
-* `firewall::basic_firewall_ipv6` - same as basic_firewall but for ipv6
+* `L7-firewall` - The default recipe.
+* `L7-firewall::allow_ssh` - allows ssh on port 22
+* `L7-firewall::basic_firewall` - sets up a basic firewall rule and chain set with default drop policy
+* `L7-firewall::basic_firewall_ipv6` - same as basic_firewall but for ipv6
+* `L7-firewall::get_ips` - sets public_ipaddress and public_ip6address attributes based on public ip addresses of the machine
 
 ## Usage
 
@@ -32,7 +33,7 @@ Configures [iptables](http://en.wikipedia.org/wiki/Iptables) packet filter via O
 * policy: iptables policy. (default: ACCEPT)
 
 ```ruby
-firewall_policy 'Drop input' do
+L7_firewall_policy 'Drop input' do
   policy 'DROP'
   chain 'INPUT'
 end
@@ -44,7 +45,7 @@ end
 * port: tcp or udp port. (default: '')
 
 ```ruby
-firewall_notrack "Do not track http traffic" do
+L7_firewall_notrack "Do not track http traffic" do
   port "80"
 end
 ```
@@ -61,7 +62,7 @@ end
 
 Example disabled rule to drop all traffic from 1.2.3.4 in blacklist chain:
 ```ruby
-firewall_rule 'Example blacklist rule' do
+L7_firewall_rule 'Example blacklist rule' do
   rule '-s 1.2.3.4'
   jump 'DROP'
   chain 'BLACKLIST'

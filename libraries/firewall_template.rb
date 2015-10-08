@@ -10,7 +10,7 @@ module FirewallTemplate
         owner 'root'
         group 'root'
         source 'etc/iptables.rules.erb'
-        cookbook 'firewall'
+        cookbook 'L7-firewall'
         variables(parameters: Hash.new do
           |h, k| h[k] = Hash.new(&h.default_proc)
         end)

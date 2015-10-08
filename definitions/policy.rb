@@ -1,4 +1,4 @@
-define :firewall_policy, policy: 'ACCEPT',
+define :L7_firewall_policy, policy: 'ACCEPT',
                          table: 'filter',
                          chain: 'INPUT',
                          protoversion: 'ipv4' do

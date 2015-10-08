@@ -84,10 +84,6 @@ end
                 <%= policies.join("\n\t\t")%>
                 <%= "#"*40 %>
 
-                if [ -f /etc/iptables.rules.nioplus ]; then
-                    source /etc/iptables.rules.nioplus
-                fi
-
                 /etc/init.d/procps start
                 ;;
         stop)
