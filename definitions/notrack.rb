@@ -13,7 +13,7 @@ define :L7_firewall_notrack, proto: 'tcp',
     when '2'
       jump = 'NOTRACK'
     else
-      raise Chef::Exceptions::ValidationFailed, 'Unknown kernel version!'
+      fail Chef::Exceptions::ValidationFailed, 'Unknown kernel version!'
     end
 
     L7_firewall_rule comment do
