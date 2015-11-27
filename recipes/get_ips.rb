@@ -4,7 +4,6 @@
 #
 # Copyright 2015, Gabor Szelcsanyi <szelcsanyi.gabor@gmail.com>
 
-
 public_ipaddress = IPFinder.find_one(node, :public_ipv4)
 node.default['public_ipaddress'] = (public_ipaddress.nil?) ? '' :  public_ipaddress[:addr]
 Chef::Log.info "Public IPv4: \e[1;32m#{node.default['public_ipaddress']}\e[0m"
