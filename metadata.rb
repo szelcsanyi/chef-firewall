@@ -3,7 +3,7 @@ maintainer_email 'szelcsanyi.gabor@gmail.com'
 license          'MIT'
 description      'Installs/Configures firewall'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '1.0.7'
+version          '1.0.8'
 name             'L7-firewall'
 
 source_url       'https://github.com/szelcsanyi/chef-firewall'
