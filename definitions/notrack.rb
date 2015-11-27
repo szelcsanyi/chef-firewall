@@ -7,7 +7,7 @@ define :L7_firewall_notrack, proto: 'tcp',
     port         = params[:port]
     comment      = params[:name]
 
-    case node[:kernel][:release].split('.')[0]
+    case node['kernel']['release'].split('.')[0]
     when '3', '4'
       jump = 'CT --notrack'
     when '2'
