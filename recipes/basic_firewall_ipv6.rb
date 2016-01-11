@@ -105,36 +105,26 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
 end
 
 case node['kernel']['release'].split('.')[0]
-when '3'
-  L7_firewall_rule 'dont track local traffic' do
-    rule '-i lo'
-    jump 'CT --notrack'
-    chain 'PREROUTING'
-    table 'raw'
-    protoversion 'ipv6'
-  end
-
-  L7_firewall_rule 'dont track local traffic' do
-    rule '-o lo'
-    jump 'CT --notrack'
-    chain 'OUTPUT'
-    table 'raw'
-    protoversion 'ipv6'
-  end
+when '3', '4'
+  jump = 'CT --notrack'
 when '2'
-  L7_firewall_rule 'dont track local traffic' do
-    rule '-i lo'
-    jump 'NOTRACK'
-    chain 'PREROUTING'
-    table 'raw'
-    protoversion 'ipv6'
-  end
+  jump = 'NOTRACK'
+else
+  fail Chef::Exceptions::ValidationFailed, 'Unknown kernel version!'
+end
 
-  L7_firewall_rule 'dont track local traffic' do
-    rule '-o lo'
-    jump 'NOTRACK'
-    chain 'OUTPUT'
-    table 'raw'
-    protoversion 'ipv6'
-  end
+L7_firewall_rule 'dont track local traffic' do
+  rule '-i lo'
+  jump jump
+  chain 'PREROUTING'
+  table 'raw'
+  protoversion 'ipv6'
+end
+
+L7_firewall_rule 'dont track local traffic' do
+  rule '-o lo'
+  jump jump
+  chain 'OUTPUT'
+  table 'raw'
+  protoversion 'ipv6'
 end
