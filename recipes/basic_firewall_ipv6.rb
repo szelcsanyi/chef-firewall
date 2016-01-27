@@ -91,6 +91,13 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
     end
   end
 
+  L7_firewall_rule 'Allow established connections in forward' do
+    rule '-m state --state RELATED,ESTABLISHED'
+    jump 'ACCEPT'
+    chain 'FORWARD'
+    protoversion 'ipv6'
+  end
+
   L7_firewall_policy 'Drop input' do
     policy 'DROP'
     chain 'INPUT'
