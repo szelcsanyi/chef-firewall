@@ -85,13 +85,12 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
   end
 
   IPFinder.find(node, :private_ipv6).map { |addr| addr[:iface].split(':')[0] }.uniq.each do |iface|
-    unless pub_ifaces.include?(iface)
-      L7_firewall_rule 'Check packets on private interface' do
-        rule "-i #{iface}"
-        jump 'PRIVATE'
-        chain 'INPUT'
-        protoversion 'ipv6'
-      end
+    next if pub_ifaces.include?(iface)
+    L7_firewall_rule 'Check packets on private interface' do
+      rule "-i #{iface}"
+      jump 'PRIVATE'
+      chain 'INPUT'
+      protoversion 'ipv6'
     end
   end
 
