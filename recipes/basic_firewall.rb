@@ -108,19 +108,23 @@ unless IPFinder.find(node, :public_ipv4).empty?
     chain 'INPUT'
   end
 
-  IPFinder.find(node, :private_ipv4).map { |addr| addr[:iface].split(':')[0] }.uniq.each do |iface|
-    L7_firewall_rule 'Check packets on private interface' do
-      rule "-i #{iface}"
-      jump 'PRIVATE'
-      chain 'INPUT'
-    end
-  end
-
+  pub_ifaces = []
   IPFinder.find(node, :public_ipv4).map { |addr| addr[:iface].split(':')[0] }.uniq.each do |iface|
     L7_firewall_rule 'Check packets on public interface' do
       rule "-i #{iface}"
       jump 'PUBLIC'
       chain 'INPUT'
+    end
+    pub_ifaces << iface
+  end
+
+  IPFinder.find(node, :private_ipv4).map { |addr| addr[:iface].split(':')[0] }.uniq.each do |iface|
+    unless pub_ifaces.include?(iface)
+      L7_firewall_rule 'Check packets on private interface' do
+        rule "-i #{iface}"
+        jump 'PRIVATE'
+        chain 'INPUT'
+      end
     end
   end
 
