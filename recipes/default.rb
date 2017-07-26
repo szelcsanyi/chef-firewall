@@ -36,7 +36,7 @@ end
 service 'firewall' do
   supports restart: true, start: true, stop: true
   action :enable
-  subscribes :start, 'template[/etc/iptables.rules]', :delayed
+  subscribes :restart, 'template[/etc/iptables.rules]', :delayed
 end
 
 create_firewall_template
