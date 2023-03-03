@@ -9,8 +9,13 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+<%  if node[:platform_version] >= '20.04' %>
+iptables="/usr/sbin/iptables"
+ip6tables="/usr/sbin/ip6tables"
+<% else %>
 iptables="/sbin/iptables"
 ip6tables="/sbin/ip6tables"
+<% end %>
 
 flush() {
 
@@ -65,7 +70,7 @@ rules = []
             settings[:rules].each do |rule|
                 rules << ((rule[:enabled]) ? "" : "# " ) + "#{iptables} -t #{table} " + ((rule[:position]=="APPEND") ? "-A #{chain} " : "-I #{chain} #{rule[:position]} ") + "-p #{rule[:proto]} #{rule[:rule]} -m comment --comment \"#{rule[:comment]}\" -j #{rule[:jump]}"
             end
-            policies << "#{iptables} -t #{table} -P #{chain} #{settings[:policy]}" unless settings[:policy].empty?
+            policies << "#{iptables} -t #{table} -P #{chain} #{settings[:policy]}" unless settings[:policy].nil? || settings[:policy].empty?
         end
     end
     rules << "#"*80+"\n"

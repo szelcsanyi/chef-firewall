@@ -115,7 +115,7 @@ unless IPFinder.find(node, :public_ipv6).empty? && IPFinder.find(node, :private_
 end
 
 case node['kernel']['release'].split('.')[0]
-when '3', '4'
+when '3', '4', '5'
   jump = 'CT --notrack'
 when '2'
   jump = 'NOTRACK'
